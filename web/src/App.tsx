@@ -1,15 +1,19 @@
+/* eslint-disable import/extensions */
 import React from 'react';
-import GlobalStyle from './styles/global';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
+import GlobalStyle from './styles/global';
+import Routes from './routes';
+
+const App: React.FC = () => {
   return (
     <>
-      <div className="App">
-        <h1>Hello World!</h1>
-      </div>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
       <GlobalStyle />
     </>
   );
-}
+};
 
 export default App;
