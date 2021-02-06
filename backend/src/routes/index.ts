@@ -10,7 +10,6 @@ routes.get('/', (request, response) => {
 });
 
 routes.post('/orphanages', async (request, response) => {
-  console.log(request.body);
   const {
     name,
     latitude,
