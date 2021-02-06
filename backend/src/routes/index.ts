@@ -1,7 +1,5 @@
-/* eslint-disable camelcase */
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
-import Orphanage from '../models/Orphanage';
+import OrphanageController from '../controllers/OrphanagesController';
 
 const routes = Router();
 
@@ -9,32 +7,8 @@ routes.get('/', (request, response) => {
   return response.json({ message: 'Hello World!' });
 });
 
-routes.post('/orphanages', async (request, response) => {
-  const {
-    name,
-    latitude,
-    longitude,
-    about,
-    instructions,
-    opening_hours,
-    open_on_weekends,
-  } = request.body;
-
-  const orphanagesRepository = getRepository(Orphanage);
-
-  const orphanage = orphanagesRepository.create({
-    name,
-    latitude,
-    longitude,
-    about,
-    instructions,
-    opening_hours,
-    open_on_weekends,
-  });
-
-  await orphanagesRepository.save(orphanage);
-
-  return response.status(201).json(orphanage);
-});
+routes.get('/orphanages', OrphanageController.index);
+routes.get('/orphanages/:id', OrphanageController.show);
+routes.post('/orphanages', OrphanageController.create);
 
 export default routes;
