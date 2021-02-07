@@ -16,10 +16,7 @@ export default class Image {
   @Column()
   path: string;
 
-  // No terceiro parametro no cascade ele ira fazer alteração caso tenha uma alteração ou deletar num Action DELETE.
-  @ManyToOne(() => Orphanage, orphanage => orphanage.images, {
-    cascade: ['insert', 'update'],
-  })
+  @ManyToOne(() => Orphanage, orphanage => orphanage.images)
   @JoinColumn({ name: 'orphanage_id' })
   orphanage: Orphanage;
 }

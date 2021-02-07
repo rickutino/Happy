@@ -35,7 +35,10 @@ export default class Orphanage {
   open_on_weekends: boolean;
 
   // No primeiro parametro retorna o tipo "Images", segundo parametro e o retorno inverso atual image.orphanages => Orphanage
-  @OneToMany(() => Image, image => image.orphanage)
+  // No terceiro parametro no cascade ele ira fazer alteração caso tenha uma alteração ou deletar num Action DELETE.
+  @OneToMany(() => Image, image => image.orphanage, {
+    cascade: ['insert', 'update'],
+  })
   // Qual e a coluna que se conectara com a tabela Image
   @JoinColumn({ name: 'orphanage_id' })
   images: Image[];
