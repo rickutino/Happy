@@ -1,5 +1,12 @@
 /* eslint-disable camelcase */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm';
+import Image from './Image';
 
 @Entity('orphanages')
 export default class Orphanage {
@@ -26,4 +33,10 @@ export default class Orphanage {
 
   @Column()
   open_on_weekends: boolean;
+
+  // No primeiro parametro retorna o tipo "Images", segundo parametro e o retorno inverso atual image.orphanages => Orphanage
+  @OneToMany(() => Image, image => image.orphanage)
+  // Qual e a coluna que se conectara com a tabela Image
+  @JoinColumn({ name: 'orphanage_id' })
+  images: Image[];
 }
