@@ -1,12 +1,21 @@
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import Leaflet from 'leaflet';
 
 import { PageMap, Header, Footer } from './styles';
 import 'leaflet/dist/leaflet.css';
 
 import logoImg from '../../images/logo.svg';
+import logoMapMaker from '../../images/map-maker.svg';
+
+const mapIcon = Leaflet.icon({
+  iconUrl: logoMapMaker,
+
+  iconSize: [58, 68],
+  iconAnchor: [29, 68],
+});
 
 const OrphanagesMap: React.FC = () => {
   return (
@@ -32,6 +41,7 @@ const OrphanagesMap: React.FC = () => {
         <TileLayer
           url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAP_TOKEN}`}
         />
+        <Marker icon={mapIcon} position={[34.7024898, 135.4937619]} />
       </MapContainer>
 
       <Link to="/" className="create-orphanage">
