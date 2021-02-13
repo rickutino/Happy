@@ -23,7 +23,9 @@ const OrphanagesMap: React.FC = () => {
     <PageMap>
       <aside>
         <Header>
-          <img src={logoImg} alt="Happy" />
+          <Link to="/">
+            <img src={logoImg} alt="Happy" />
+          </Link>
           <h2>Escolha um orfanato no mapa</h2>
           <p>Muitas crianças estão esperando a sua visita</p>
         </Header>
@@ -50,14 +52,14 @@ const OrphanagesMap: React.FC = () => {
             className="map-popup"
           >
             Lar das Meninas.
-            <Link to="/">
+            <Link to="/orphanages/1">
               <FiArrowRight size={20} color="#FFF" />
             </Link>
           </Popup>
         </Marker>
       </MapContainer>
 
-      <Link to="/" className="create-orphanage">
+      <Link to="/orphanages/create" className="create-orphanage">
         <FiPlus size={32} color="#FFF" />
       </Link>
     </PageMap>
