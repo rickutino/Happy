@@ -2,38 +2,17 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { FiArrowLeft, FiPlus } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { FiPlus } from 'react-icons/fi';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import Leaflet from 'leaflet';
 
-import { PageCreateOrphanage, Aside, Main } from './styles';
-import 'leaflet/dist/leaflet.css';
-import mapMarkerImg from '../../images/map-maker.svg';
-
-const happyMapIcon = Leaflet.icon({
-  iconUrl: mapMarkerImg,
-
-  iconSize: [58, 68],
-  iconAnchor: [29, 68],
-  popupAnchor: [0, -60],
-});
+import { PageCreateOrphanage, Main } from './styles';
+import Sidebar from '../../components/SideBar';
+import mapIcon from '../../utils/mapIcon';
 
 const CreateOrphanage: React.FC = () => {
-  const { goBack } = useHistory();
-
   return (
     <PageCreateOrphanage id="page-create-orphanage">
-      <Aside>
-        <img src={mapMarkerImg} alt="Happy" />
-
-        <footer>
-          <button type="button" onClick={goBack}>
-            <FiArrowLeft size={24} color="#FFF" />
-          </button>
-        </footer>
-      </Aside>
-
+      <Sidebar />
       <Main>
         <form className="create-orphanage-form">
           <fieldset>
@@ -51,7 +30,7 @@ const CreateOrphanage: React.FC = () => {
 
               <Marker
                 interactive={false}
-                icon={happyMapIcon}
+                icon={mapIcon}
                 position={[34.7024898, 135.4937619]}
               />
             </MapContainer>
